@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐방</title>
+    <link rel="stylesheet" href="탐방.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header id="tambang"><strong>TamBang</strong></header>
+    <div class="container">
+      <nav class="left">
+        <section class="date-container">
+          <div class="year" id="year"></div>
+          <div class="date" id="date"></div>
+          <div class="day" id="day"></div>
+        </section>
+
+        <section class="icon-container">
+          <a class="icon-button" title="일정">
+            <i class="fas fa-calendar"></i>
+          </a>
+          <a class="icon-button" title="가계부">
+            <i class="fas fa-wallet"></i>
+          </a>
+          <a class="icon-button" title="체크리스트">
+            <i class="fas fa-circle-check"></i>
+          </a>
+        </section>
+
+        <section class="setting">
+          <p>여행지</p>
+          <ul id="questList"></ul>
+          <button id="btnSave" class="btn">
+            <i class="fa-solid fa-floppy-disk"></i> 저장
+          </button>
+        </section>
+
+        <fieldset class="setting">
+          <label for="inputQuest">여행지 추가</label>
+          <input
+            id="inputQuest"
+            class="input-field"
+            placeholder="추가할 여행지"
+          />
+          <button id="btnQuest" class="btn">추가</button>
+        </fieldset>
+        <fieldset class="setting">
+          <label for="inputDelQuest">여행지 삭제</label>
+          <input
+            type="text"
+            id="inputDelQuest"
+            class="input-field"
+            placeholder="입력해 주세요."
+          />
+          <button id="btnDelQuest" class="btn">삭제</button>
+        </fieldset>
+      </nav>
+
+      <section class="center content-section" id="center_schedule">
+        <h2 class="page-title">일정</h2>
+        <article id="schedule_table"></article>
+      </section>
+
+      <section class="center content-section" id="center_accountBook">
+        <h2 class="page-title">가계부</h2>
+        <article id="accountBook_table"></article>
+      </section>
+
+      <section class="center content-section" id="center_checklist">
+        <h2 class="page-title">체크리스트</h2>
+        <article id="checklist">
+          <table id="uncheck_table"></table>
+          <table id="check_table"></table>
+        </article>
+      </section>
+
+      <aside class="right content-aside" id="right-schedule">
+        <fieldset class="setting">
+          <p>여행 기간</p>
+          <input
+            type="text"
+            id="inputStartDate"
+            class="input-field"
+            placeholder="출발일"
+            onfocus="(this.type='date')"
+            onblur="if(!this.value) this.type='text'"
+          />
+          <input
+            type="text"
+            id="inputEndDate"
+            class="input-field"
+            placeholder="복귀일"
+            onfocus="(this.type='date')"
+            onblur="if(!this.value) this.type='text'"
+          />
+          <button id="btnDate" class="btn">확인</button>
+        </fieldset>
+
+        <fieldset class="setting">
+          <label for="selectPlace">일정</label>
+          <select class="input-field" id="selectPlace">
+            <option disabled hidden selected>기간을 설정해주세요.</option>
+            <option></option>
+          </select>
+          <label for="inputPlace">장소</label>
+          <input
+            type="text"
+            id="inputPlace"
+            class="input-field"
+            placeholder="입력해 주세요."
+          />
+          <label for="inputTime">시간</label>
+          <input type="time" id="inputTime" class="input-field" />
+          <button id="btnSchedule" class="btn">일정 추가</button>
+        </fieldset>
+
+        <fieldset class="setting">
+          <label for="inputDelSchedule">일정 삭제</label>
+          <input
+            type="text"
+            id="inputDelSchedule"
+            class="input-field"
+            placeholder="입력해 주세요."
+          />
+          <button id="btnDelSche" class="btn">삭제</button>
+        </fieldset>
+      </aside>
+
+      <aside class="right content-aside" id="right-account-book">
+        <fieldset class="setting summary">
+          <p id="chkSum">총 원</p>
+          <button id="btnSum" class="btn">체크 박스 합산</button>
+        </fieldset>
+
+        <fieldset class="setting">
+          <label for="selectTag">태그</label>
+          <select class="input-field" id="selectTag">
+            <option>전체</option>
+            <option>식비</option>
+            <option>교통비</option>
+            <option>숙박비</option>
+            <option>기타</option>
+          </select>
+          <p id="total">총 원</p>
+        </fieldset>
+
+        <fieldset class="setting">
+          <label for="inputNum">정산</label>
+          <input class="input-field" id="inputNum" placeholder="몇 명" />
+          <p id="dutch">인당 원</p>
+        </fieldset>
+
+        <fieldset class="setting">
+          <label for="selectAccSchedule">일정</label>
+          <select class="input-field" id="selectAccSchedule">
+            <option disabled hidden selected>기간을 설정해주세요.</option>
+            <option></option>
+          </select>
+
+          <label for="inputAccItem">항목</label>
+          <input
+            type="text"
+            id="inputAccItem"
+            class="input-field"
+            placeholder="입력해 주세요."
+          />
+
+          <label for="inputAccAmount">금액</label>
+          <input
+            type="text"
+            id="inputAccAmount"
+            class="input-field"
+            placeholder="입력해 주세요."
+          />
+
+          <label for="selectAccTag">태그</label>
+          <select class="input-field" id="selectAccTag">
+            <option>식비</option>
+            <option>교통비</option>
+            <option>숙박비</option>
+            <option>기타</option>
+          </select>
+
+          <button id="btnAddAcc" class="btn">항목 추가</button>
+        </fieldset>
+
+        <fieldset class="setting">
+          <label for="inputDelAcc">항목 삭제</label>
+          <input
+            type="text"
+            id="inputDelAcc"
+            class="input-field"
+            placeholder="입력해 주세요"
+          />
+          <button id="btnDelAcc" class="btn">삭제</button>
+        </fieldset>
+      </aside>
+
+      <aside class="right content-aside" id="right-checklist">
+        <fieldset class="setting">
+          <label for="inputAddChk">항목 추가</label>
+          <input
+            type="text"
+            id="inputAddChk"
+            class="input-field"
+            placeholder="입력해 주세요."
+          />
+          <button id="btnAddChk" class="btn">추가</button>
+        </fieldset>
+
+        <fieldset class="setting">
+          <label for="inputDelChk">항목 삭제</label>
+          <input
+            type="text"
+            id="inputDelChk"
+            class="input-field"
+            placeholder="입력해 주세요."
+          />
+          <button id="btnDelChk" class="btn">삭제</button>
+        </fieldset>
+      </aside>
+    </div>
+    <script src="탐방.js"></script>
+  </body>
+</html>
